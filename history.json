@@ -1,0 +1,78 @@
+[
+    {
+        "timestamp": "2026-03-28T23:56:17.253145",
+        "url": "http://192.168.1.1/login",
+        "score": 75,
+        "level": "Dangerous",
+        "reasons": [
+            "Uses IP address instead of domain name",
+            "Does not use HTTPS",
+            "Contains suspicious keywords: login"
+        ]
+    },
+    {
+        "timestamp": "2026-03-28T23:56:16.153776",
+        "url": "https://google.com",
+        "score": 0,
+        "level": "Safe",
+        "reasons": []
+    },
+    {
+        "timestamp": "2026-03-28T23:56:13.635840",
+        "url": "https://paypal.com@secure-site.net",
+        "score": 50,
+        "level": "Suspicious",
+        "reasons": [
+            "Contains '@' symbol (often masks true domain)",
+            "Contains suspicious keywords: secure, paypal"
+        ]
+    },
+    {
+        "timestamp": "2026-03-28T23:56:12.587049",
+        "url": "http://192.168.1.1/login",
+        "score": 75,
+        "level": "Dangerous",
+        "reasons": [
+            "Uses IP address instead of domain name",
+            "Does not use HTTPS",
+            "Contains suspicious keywords: login"
+        ]
+    },
+    {
+        "timestamp": "2026-03-28T23:55:15.201522",
+        "url": "https://paypal.secure-login.update.com/signin?ref=123",
+        "score": 30,
+        "level": "Safe",
+        "reasons": [
+            "Contains suspicious keywords: login, secure, update, signin, paypal, signin"
+        ]
+    },
+    {
+        "timestamp": "2026-03-28T23:54:57.632889",
+        "url": "http://192.168.1.1/login",
+        "score": 75,
+        "level": "Dangerous",
+        "reasons": [
+            "Uses IP address instead of domain name",
+            "Does not use HTTPS",
+            "Contains suspicious keywords: login"
+        ]
+    },
+    {
+        "timestamp": "2026-03-28T23:53:24.972311",
+        "url": "https://paypal.com@secure-site.net",
+        "score": 50,
+        "level": "Suspicious",
+        "reasons": [
+            "Contains '@' symbol (often masks true domain)",
+            "Contains suspicious keywords: secure, paypal"
+        ]
+    },
+    {
+        "timestamp": "2026-03-28T23:52:50.530283",
+        "url": "https://google.com",
+        "score": 0,
+        "level": "Safe",
+        "reasons": []
+    }
+]
