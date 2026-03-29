@@ -22,7 +22,7 @@ def test_url(url):
     print(f"Level: {result['level']} (Score: {result['score']})")
     print(f"Reasons: {', '.join(result['reasons'])}")
     if suggestion:
-        print(f"Suggestion: Did you mean {suggestion}?")
+        print(f"Suggestion: This looks like a spoof of {suggestion['brand']} ({suggestion['domain']})")
     print("-" * 30)
 
 if __name__ == "__main__":
@@ -31,7 +31,10 @@ if __name__ == "__main__":
         "http://192.168.1.1/login",
         "https://secure-bank-verify-login.account-update.com/paypal",
         "http://goggle.com/signin",
-        "https://paypal.com@phish-site.net/secure"
+        "https://paypal.com@phish-site.net/secure",
+        "https://faceb0ok.com/login",
+        "https://pyapal.com/verify",
+        "https://g0ogle.co"
     ]
     
     for url in test_urls:

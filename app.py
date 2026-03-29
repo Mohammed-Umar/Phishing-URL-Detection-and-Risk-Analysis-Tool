@@ -178,23 +178,28 @@ class PhishingDetectorApp(ctk.CTk):
         self.score_value_label = ctk.CTkLabel(self.result_frame, text="0 / 100", 
                                             font=ctk.CTkFont(size=14),
                                             text_color=COLORS["text_dim"])
-        self.score_value_label.grid(row=3, column=0, pady=(0, 25))
+        self.score_value_label.grid(row=3, column=0, pady=(0, 15))
+
+        # Typosquatting Suggestion (Hidden by default)
+        self.typo_alert_frame = ctk.CTkFrame(self.result_frame, fg_color=COLORS["warning"], corner_radius=10, height=0)
+        self.typo_alert_frame.grid(row=4, column=0, sticky="ew", padx=40, pady=(0, 20))
+        self.typo_alert_frame.grid_remove() # Start hidden
+        
+        self.typo_label = ctk.CTkLabel(self.typo_alert_frame, text="", 
+                                      text_color=COLORS["bg_dark"], 
+                                      font=ctk.CTkFont(weight="bold", size=14))
+        self.typo_label.pack(pady=10, padx=20)
 
         # Details Section
         self.details_label = ctk.CTkLabel(self.result_frame, text="DETECTION DETAILS", 
                                          font=ctk.CTkFont(size=12, weight="bold"),
                                          text_color=COLORS["text_dim"])
-        self.details_label.grid(row=4, column=0, sticky="w", padx=40)
+        self.details_label.grid(row=5, column=0, sticky="w", padx=40)
 
         self.details_scroll = ctk.CTkScrollableFrame(self.result_frame, height=180, 
                                                     fg_color="#0F172A",
                                                     corner_radius=15)
-        self.details_scroll.grid(row=5, column=0, sticky="nsew", padx=40, pady=(5, 30))
-
-        
-        # Typosquatting Suggestion
-        self.typo_label = ctk.CTkLabel(self.main_frame, text="", text_color="#E67E22", font=ctk.CTkFont(slant="italic"))
-        self.typo_label.grid(row=3, column=0, pady=5)
+        self.details_scroll.grid(row=6, column=0, sticky="nsew", padx=40, pady=(5, 30))
 
     def _on_url_key_release(self, event):
         """Real-time debouncing for analysis."""
@@ -273,9 +278,12 @@ class PhishingDetectorApp(ctk.CTk):
 
         # Update suggestion
         if suggestion:
-            self.typo_label.configure(text=f"Typo detected? Did you mean: {suggestion}")
+            brand = suggestion.get("brand", "the genuine site")
+            domain = suggestion.get("domain", "")
+            self.typo_alert_frame.grid()
+            self.typo_label.configure(text=f"⚠️ This looks like a spoof of {brand} ({domain}).")
         else:
-            self.typo_label.configure(text="")
+            self.typo_alert_frame.grid_remove()
 
     def _reset_dashboard(self):
         self.status_icon_label.configure(image=self.icons["safe"])
@@ -285,7 +293,7 @@ class PhishingDetectorApp(ctk.CTk):
         self.result_frame.configure(border_color="#1E293B")
         for widget in self.details_scroll.winfo_children():
             widget.destroy()
-        self.typo_label.configure(text="")
+        self.typo_alert_frame.grid_remove()
 
 
     def _on_qr_scan(self):
